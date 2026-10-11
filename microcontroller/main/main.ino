@@ -7,12 +7,11 @@
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
 
-// Konfigurasi Pin I2C sesuai rakitan kamu
-#define SDA_PIN 4  // D4
-#define SCL_PIN 2  // D2
+// Menggunakan Pin I2C Default ESP32 (SDA = 21, SCL = 22)
+#define SDA_PIN 21
+#define SCL_PIN 22
 
 // Tekanan udara rata-rata tingkat laut standar (dalam hPa)
-// Nilai acuan default: 1013.25 hPa
 #define SEALEVELPRESSURE_HPA (1013.25)
 
 // Inisialisasi Objek Sensor & Display
@@ -21,34 +20,37 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
 void setup() {
   Serial.begin(115200);
+  delay(1000);
 
-  // Inisialisasi jalur I2C kustom pada Pin D4 (SDA) & D2 (SCL)
+  // Inisialisasi jalur I2C pada Pin 21 & 22
   Wire.begin(SDA_PIN, SCL_PIN);
 
-  // Inisialisasi Layar OLED (Alamat I2C default: 0x3C)
+  // Inisialisasi Layar OLED (Alamat I2C: 0x3C)
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
     Serial.println(F("Gagal menemukan layar OLED!"));
-    for(;;); // Stop jika OLED tidak terdeteksi
+    for(;;); 
   }
 
-  // Inisialisasi Sensor BMP280 (Alamat I2C HW-611 umumnya: 0x76)
+  // Inisialisasi Sensor BMP280 (Mencoba alamat 0x76, jika gagal coba 0x77)
   if (!bmp.begin(0x76)) {
-    Serial.println(F("Gagal menemukan sensor BMP280!"));
-    display.clearDisplay();
-    display.setTextSize(1);
-    display.setTextColor(WHITE);
-    display.setCursor(0, 20);
-    display.println("BMP280 Error/Cek Kabel");
-    display.display();
-    for(;;); // Stop jika sensor tidak terdeteksi
+    if (!bmp.begin(0x77)) {
+      Serial.println(F("Gagal menemukan sensor BMP280! Cek kembali perkawatan kabelnya."));
+      display.clearDisplay();
+      display.setTextSize(1);
+      display.setTextColor(WHITE);
+      display.setCursor(0, 20);
+      display.println("BMP280 Error/Cek Kabel");
+      display.display();
+      for(;;); 
+    }
   }
 
   /* Setting default sampling BMP280 untuk hasil pembacaan presisi */
-  bmp.setSampling(Adafruit_BMP280::MODE_NORMAL,     /* Operating Mode. */
-                  Adafruit_BMP280::SAMPLING_X2,     /* Temp. oversampling */
-                  Adafruit_BMP280::SAMPLING_X16,    /* Pressure oversampling */
-                  Adafruit_BMP280::FILTER_X16,      /* Filtering. */
-                  Adafruit_BMP280::STANDBY_MS_500); /* Standby time. */
+  bmp.setSampling(Adafruit_BMP280::MODE_NORMAL,     
+                  Adafruit_BMP280::SAMPLING_X2,     
+                  Adafruit_BMP280::SAMPLING_X16,    
+                  Adafruit_BMP280::FILTER_X16,      
+                  Adafruit_BMP280::STANDBY_MS_500); 
 
   // Tampilan Awal / Splash Screen
   display.clearDisplay();
@@ -64,11 +66,11 @@ void setup() {
 
 void loop() {
   // Pembacaan data dari sensor BMP280
-  float temp = bmp.readTemperature();                           // Suhu (°C)
-  float pressure = bmp.readPressure() / 100.0F;                // Tekanan (hPa)
-  float altitude = bmp.readAltitude(SEALEVELPRESSURE_HPA);     // Ketinggian (MDPL)
+  float temp = bmp.readTemperature();                       // Suhu (°C)
+  float pressure = bmp.readPressure() / 100.0F;              // Tekanan (hPa)
+  float altitude = bmp.readAltitude(SEALEVELPRESSURE_HPA);    // Ketinggian (MDPL)
 
-  // Cetak ke Serial Monitor (untuk keperluan debugging)
+  // Cetak ke Serial Monitor
   Serial.print("Suhu: "); Serial.print(temp); Serial.println(" *C");
   Serial.print("Tekanan: "); Serial.print(pressure); Serial.println(" hPa");
   Serial.print("Ketinggian: "); Serial.print(altitude); Serial.println(" m");
@@ -81,19 +83,19 @@ void loop() {
   display.setTextSize(1);
   display.setCursor(18, 0);
   display.println("ALTITUDE METER");
-  display.drawLine(0, 10, 128, 10, WHITE); // Garis pembatas header
+  display.drawLine(0, 10, 128, 10, WHITE); 
 
-  // Nilai MDPL Utama (Ukuran Teks Besar)
+  // Nilai MDPL Utama
   display.setTextSize(2);
   display.setCursor(10, 20);
-  display.print(altitude, 1); // Format 1 angka di belakang koma
+  display.print(altitude, 1); 
   display.setTextSize(1);
   display.println(" mdpl");
 
   // Garis pembatas bawah
   display.drawLine(0, 42, 128, 42, WHITE);
 
-  // Informasi Tekanan Udara & Suhu (Ukuran Teks Kecil)
+  // Informasi Tekanan Udara & Suhu
   display.setTextSize(1);
   display.setCursor(0, 48);
   display.print("Tek : ");
@@ -108,6 +110,5 @@ void loop() {
   // Perbarui tampilan OLED
   display.display();
 
-  // Refresh setiap 1.5 detik
   delay(1500);
 }
