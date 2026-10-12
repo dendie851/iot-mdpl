@@ -60,6 +60,9 @@ Whether you want to measure the height of your apartment building, test the elev
 
 ## 2. The Story of Air Pressure and Gravity
 
+![ilustration.jpg](design/ilustration.jpg)
+
+
 ### 2.1 Story 1 — Air Pressure and Gravity Make It Stronger
 
 Let us start our story far **above the sky**.
