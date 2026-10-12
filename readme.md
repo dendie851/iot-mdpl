@@ -32,7 +32,6 @@ Though we cannot see elevation with our naked eyes, our environment leaves invis
     - [5.1 Hardware You Need](#51-hardware-you-need)
     - [5.2 Software You Need](#52-software-you-need)
     - [5.3 Steps](#53-steps)
-  - [6. Project Files](#6-project-files)
 
 ---
 
@@ -105,7 +104,7 @@ This phenomenon interacts with our project in two fascinating ways. First, our s
 
 The complete structural blueprint of this project is saved and viewable in the repository:
 
-👉 **[View Architecture Image](design/architecture.png)**  
+[View Architecture Image](design/architecture.png)
 
 ### 3.2 Explanation of Every Component
 
@@ -234,27 +233,3 @@ As predicted by our atmospheric story, ascending even a single floor results in 
 
 ---
 
-## 6. Project Files
-
-```text
-iot-mdpl/
-├── design/
-│   ├── architecture.png            ← System architecture diagram
-│   └── architecture.drawio         ← Editable architecture source
-├── microcontroller/
-│   └── main/
-│       └── main.ino                ← ESP32 firmware sketch
-├── ss/
-│   ├── 1-ardunio-lib-adafruity-bmp280.png  ← Library installation proof
-│   ├── display-altimeter-lebih-dekat.jpeg  ← Close-up OLED reading
-│   ├── prototype.jpeg                      ← Full physical prototype
-│   ├── test-lantai-1.jpeg                  ← Floor 1 test capture
-│   └── test-lantai-2.jpeg                  ← Floor 2 test capture
-├── video/
-│   └── demo.mp4                    ← Live demonstration video
-└── readme.md                       ← Project documentation
-```
-
----
-
-*Thank you for reading. Remember: gravity pulls the air down, the ground radiates warmth up—and a compact ESP32 brings both invisible forces to life right in your hand.*
