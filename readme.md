@@ -1,4 +1,4 @@
-# MDPL — Altitude Meter (Measuring Height Above Sea Level)
+# MDPL Altitude Meter (Measuring Height Above Sea Level)
 
 Have you ever wondered how high you really are above the ocean, even when you are miles inland? That is where **MDPL** comes in. 
 
@@ -9,7 +9,7 @@ Though we cannot see elevation with our naked eyes, our environment leaves invis
 
 ## Table of Contents
 
-- [MDPL — Altitude Meter (Measuring Height Above Sea Level)](#mdpl--altitude-meter-measuring-height-above-sea-level)
+- [MDPL Altitude Meter (Measuring Height Above Sea Level)](#mdpl-altitude-meter-measuring-height-above-sea-level)
   - [Table of Contents](#table-of-contents)
   - [1. Introduction](#1-introduction)
     - [1.1 What is MDPL?](#11-what-is-mdpl)
@@ -104,7 +104,7 @@ This phenomenon interacts with our project in two fascinating ways. First, our s
 
 The complete structural blueprint of this project is saved and viewable in the repository:
 
-[View Architecture Image](design/architecture.png)
+![View Architecture Image](design/architecture.png)
 
 ### 3.2 Explanation of Every Component
 
@@ -147,7 +147,7 @@ All photographic proof and documentation for this build are housed inside the [`
 
 ### 4.1 Installing The Adafruit BMP280 Library
 
-👉 **[View Library Installation Screenshot](ss/1-ardunio-lib-adafruity-bmp280.png)**
+![View Library Installation Screenshot](ss/1-ardunio-lib-adafruity-bmp280.png)
 
 **What you see:**
 Captured inside **Arduino IDE 2.3.6**, this view shows the **Library Manager** with `Adafruit BMP280` queued for installation. Version 3.0.0 is highlighted alongside the correct target board profile: **ESP32 Dev Module**.
@@ -157,7 +157,7 @@ This is the foundational software step. Our firmware relies on `#include <Adafru
 
 ### 4.2 Close Look at The OLED Display
 
-👉 **[View OLED Display Close-Up](ss/display-altimeter-lebih-dekat.jpeg)**
+![View OLED Display Close-Up](ss/display-altimeter-lebih-dekat.jpeg)
 
 **What you see:**
 A close-up shot of the glowing OLED screen in action. The header clearly displays **"ALTITUDE METER"**, showcasing an active reading of **24.6 mdpl**, accompanied by **Tek : 1010.3 hPa** and **Suhu : 31.3 C**.
@@ -167,7 +167,7 @@ This serves as visual confirmation of end-to-end firmware functionality, proving
 
 ### 4.3 The Full Prototype
 
-👉 **[View Full Prototype Setup](ss/prototype.jpeg)**
+![View Full Prototype Setup](ss/prototype.jpeg)
 
 **What you see:**
 The completed circuit assembled on a breadboard—featuring the ESP32, the OLED display, and the BMP280 sensor—all powered untethered via a portable USB power bank.
@@ -177,14 +177,14 @@ This physical build validates our system architecture blueprint, ensuring the de
 
 ### 4.4 Test on Floor 1
 
-👉 **[View Floor 1 Test Photo](ss/test-lantai-1.jpeg)**
+![View Floor 1 Test Photo](ss/test-lantai-1.jpeg)
 
 **What you see:**
 The device capturing baseline measurements on the ground floor, displaying **24.4 mdpl**, **1010.4 hPa**, and **31.0°C**.
 
 ### 4.5 Test on Floor 2
 
-👉 **[View Floor 2 Test Photo](ss/test-lantai-2.jpeg)**
+![View Floor 2 Test Photo](ss/test-lantai-2.jpeg)
 
 **What you see:**
 The device moved upward to the second floor, updating its readouts to **25.0 mdpl**, **1010.1 hPa**, and **31.0°C**.
